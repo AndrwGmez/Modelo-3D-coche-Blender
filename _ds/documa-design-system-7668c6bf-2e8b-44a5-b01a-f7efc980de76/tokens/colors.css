@@ -1,0 +1,68 @@
+/* ============================================================
+   DOCUMA — COLOR TOKENS  (v2 — light, vivid direction)
+   Superseded the original dark "ink workbench" palette scraped from the
+   first demo file after live art-direction feedback: the moody/muted ink+
+   teal+amber combination (and 3 further muted/earthy variants explored)
+   were all rejected in favor of a brighter, cleaner, more saturated look.
+   This is now the source of truth for Documa's color system.
+   ============================================================ */
+
+:root {
+  /* ---- Base palette (raw values) ---- */
+  --neutral-0: #FFFFFF;    /* pure white — document/paper surfaces */
+  --neutral-25: #FAFAFC;   /* app shell background — barely-tinted white */
+  --neutral-100: #EFF1F6;  /* raised panel fill (inputs, tabs, dropzones) */
+  --neutral-200: #E1E4EC;  /* hairlines */
+  --neutral-400: #9599A8;  /* disabled / muted / placeholder text */
+  --neutral-600: #666B7A;  /* secondary text */
+  --neutral-800: #23262E;  /* inverse-surface hover (near-black, lighter step) */
+  --neutral-900: #14161D;  /* primary text; inverse surface (near-black) */
+
+  --indigo-600: #4338CA;   /* primary action (rest) — vivid, not muted */
+  --indigo-500: #4F46E5;  /* primary action (hover/bright) */
+
+  --orange-600: #F2660D;  /* accent — scarcity/attention (stamps, pending) */
+  --orange-700: #B8450A;  /* accent text on tint (pending copy, AA on orange-100) */
+  --orange-100: #FFE9D9;  /* pending chip background */
+  --orange-300: #F7B583;  /* pending chip dashed border */
+
+  --red-600: #E11D48;     /* danger — live recording dot/border (vivid) */
+  --red-700: #9F1239;     /* danger text-safe on light bg (recording label, inline errors) */
+
+  /* ---- Semantic aliases — used directly by components ----
+     Naming note: "-dark"/"-light" suffixes are historical (from the v1
+     dark-shell/light-paper duotone) and now mean "shell side" / "paper
+     side" respectively, NOT literal darkness — both sides are light in v2.
+     Kept as-is so component source needed zero structural changes for the
+     retheme; only token values moved. */
+  --surface-app: var(--neutral-25);
+  --surface-raised: var(--neutral-100);
+  --surface-paper: var(--neutral-0);
+  --surface-paper-raised: var(--neutral-0);
+  --surface-inverse: var(--neutral-900);       /* solid dark button variant */
+  --surface-inverse-hover: var(--neutral-800);
+
+  --border-hairline-dark: var(--neutral-200);  /* shell-side hairline */
+  --border-hairline-light: var(--neutral-200); /* paper-side hairline */
+
+  --text-primary-dark: var(--neutral-900);     /* primary text, shell side */
+  --text-secondary-dark: var(--neutral-600);
+  --text-disabled-dark: var(--neutral-400);
+
+  --text-primary-light: var(--neutral-900);    /* primary text, paper side */
+  --text-secondary-light: var(--neutral-600);
+  --text-muted-light: var(--neutral-400);
+
+  --brand-primary: var(--indigo-600);
+  --brand-primary-hover: var(--indigo-500);
+  --brand-primary-ink: #FFFFFF;                /* text/icon color on brand-primary fill */
+  --brand-primary-wash: rgba(67, 56, 202, 0.08); /* selected-row tint (TemplateCard active) */
+
+  --accent-warm: var(--orange-600);
+  --state-danger: var(--red-600);
+  --state-danger-text: var(--red-700);         /* danger color used as TEXT (needs more contrast than the raw dot/border red) */
+
+  --state-pending-bg: var(--orange-100);
+  --state-pending-text: var(--orange-700);
+  --state-pending-border: var(--orange-300);
+}

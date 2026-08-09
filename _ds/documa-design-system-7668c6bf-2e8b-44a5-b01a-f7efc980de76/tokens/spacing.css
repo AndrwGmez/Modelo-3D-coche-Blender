@@ -1,0 +1,28 @@
+/* ============================================================
+   DOCUMA — SPACING, RADIUS & LAYOUT TOKENS
+   ============================================================ */
+:root {
+  --space-1: 4px;
+  --space-2: 7px;
+  --space-3: 8px;
+  --space-4: 10px;
+  --space-5: 12px;
+  --space-6: 14px;
+  --space-7: 16px;
+  --space-8: 18px;
+  --space-9: 20px;
+  --space-10: 22px;
+  --space-11: 24px;
+  --space-12: 28px;
+  --space-13: 34px;
+  --space-14: 40px;
+  --space-15: 60px;
+
+  --radius-sm: 3px;
+  --radius-base: 4px;
+  --radius-pill: 20px;
+  --radius-circle: 50%;
+
+  --content-max-width: 1180px;
+  --workbench-gap: 20px;
+}

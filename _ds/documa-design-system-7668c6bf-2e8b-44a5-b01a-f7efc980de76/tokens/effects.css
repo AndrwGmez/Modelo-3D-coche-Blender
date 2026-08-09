@@ -1,0 +1,23 @@
+/* ============================================================
+   DOCUMA — MOTION, BORDER & STATE-EFFECT TOKENS
+   The brand has no shadows or blur anywhere in its source — depth comes
+   from flat color contrast (ink vs paper) and 1px hairlines, never elevation.
+   ============================================================ */
+:root {
+  --ease-standard: ease; /* @kind other */
+  --ease-bounce: cubic-bezier(.2, 1.3, .5, 1); /* @kind other */
+
+  --duration-fast: 0.18s; /* @kind other */
+  --duration-base: 0.35s; /* @kind other */
+  --duration-slow: 0.4s; /* @kind other */
+  --duration-image-fade: 0.5s; /* @kind other */
+
+  --border-width-hairline: 1px;
+  --border-width-emphasis: 1.5px;
+  --border-width-strong: 2px;
+
+  /* caret blink used in the typewriter fill effect */
+  --caret-blink-duration: 0.9s; /* @kind other */
+  /* recording dot pulse */
+  --pulse-duration: 1.1s; /* @kind other */
+}

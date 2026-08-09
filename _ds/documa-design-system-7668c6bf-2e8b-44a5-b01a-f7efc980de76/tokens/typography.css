@@ -1,0 +1,48 @@
+/* ============================================================
+   DOCUMA — TYPE TOKENS
+   Three families, each with one job — never mixed within a role:
+     Space Grotesk  → display/headings/brand (a little technical, geometric)
+     Inter          → body copy, UI labels, paragraphs
+     JetBrains Mono → data, metadata, tags, timestamps, counters, code-like chrome
+   Loaded from Google Fonts (see @font-face below — these are stock Google
+   webfonts, not custom cuts; see readme "Fonts" section).
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+:root {
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* ---- Sizes ---- */
+  --text-2xl: 27px;   /* page / brand title */
+  --text-xl: 21px;    /* document title */
+  --text-lg: 16px;    /* section heading (e.g. limit notice) */
+  --text-md: 15px;    /* primary button label */
+  --text-base: 14px;  /* body copy, slot content */
+  --text-sm: 13px;    /* subhead / supporting copy */
+  --text-xs: 12.5px;  /* field captions, inline errors */
+  --text-2xs: 11.5px; /* footer, hints */
+  --text-mono-label: 11px;   /* mono labels, eyebrows, slot labels */
+  --text-mono-meta: 10.5px;  /* mono metadata, tiny counters */
+
+  /* ---- Weights ---- */
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+
+  /* ---- Leading ---- */
+  --leading-tight: 1.1;
+  --leading-snug: 1.5;
+  --leading-relaxed: 1.62;
+
+  /* ---- Tracking ---- */
+  --tracking-tight: -0.01em;
+  --tracking-normal: 0;
+  --tracking-wide: 0.04em;
+  --tracking-widest: 0.14em;
+  --tracking-eyebrow: 0.18em;
+  --tracking-loose: 0.2em;
+}

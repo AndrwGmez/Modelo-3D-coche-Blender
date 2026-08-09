@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>4x4 del portafolio — modelo 3D</title>
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://unpkg.com/three@0.184.0/build/three.module.js",
+    "three/addons/controls/OrbitControls.js": "https://unpkg.com/three@0.184.0/examples/jsm/controls/OrbitControls.js",
+    "three/addons/loaders/GLTFLoader.js": "https://unpkg.com/three@0.184.0/examples/jsm/loaders/GLTFLoader.js",
+    "three/addons/loaders/DRACOLoader.js": "https://unpkg.com/three@0.184.0/examples/jsm/loaders/DRACOLoader.js",
+    "three/addons/exporters/OBJExporter.js": "https://unpkg.com/three@0.184.0/examples/jsm/exporters/OBJExporter.js",
+    "three/addons/exporters/GLTFExporter.js": "https://unpkg.com/three@0.184.0/examples/jsm/exporters/GLTFExporter.js"
+  },
+  "integrity": {
+    "https://unpkg.com/three@0.184.0/build/three.module.js": "sha384-8FCZ1eVO6it4+pbec2aDtnTrwjWXZLJRC+MAGCIPDgsYnUrl/E0A2YlF8ioMKI/J",
+    "https://unpkg.com/three@0.184.0/build/three.core.js": "sha384-dw2ooPewaEIrAgl6oFDBmmBWCE9oW9LxRGcfwZ0hLvEprzo202wXl7vCYHRlSnOT",
+    "https://unpkg.com/three@0.184.0/examples/jsm/controls/OrbitControls.js": "sha384-4rziNxOBZKQ69i+w+f89KJ55TCYquwchVbByQwmaOeIOXdOU2PLDn3kOfXHwIJC9",
+    "https://unpkg.com/three@0.184.0/examples/jsm/exporters/OBJExporter.js": "sha384-nbwtoZENJD3Vq+ACK0CuGQdPMuDWHkamC2KJD70EV5nfg6jQjfppKOea07YJN+N3",
+    "https://unpkg.com/three@0.184.0/examples/jsm/exporters/GLTFExporter.js": "sha384-VofkvpG6HERhFCYbsUOHeNXBCqID2nfqkQqnVzE1jc/oPcz+qJ13ADdXH08hE+cQ"
+  }
+}
+</script>
+<link rel="stylesheet" href="_ds/documa-design-system-7668c6bf-2e8b-44a5-b01a-f7efc980de76/tokens/colors.css">
+<link rel="stylesheet" href="_ds/documa-design-system-7668c6bf-2e8b-44a5-b01a-f7efc980de76/tokens/typography.css">
+<link rel="stylesheet" href="_ds/documa-design-system-7668c6bf-2e8b-44a5-b01a-f7efc980de76/tokens/spacing.css">
+<link rel="stylesheet" href="_ds/documa-design-system-7668c6bf-2e8b-44a5-b01a-f7efc980de76/tokens/effects.css">
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { height: 100%; }
+  body {
+    margin: 0;
+    background: var(--surface-app);
+    color: var(--text-primary-dark);
+    font-family: var(--font-body);
+    display: flex;
+    flex-direction: column;
+  }
+  a { color: var(--brand-primary); text-decoration: none; border-bottom: 1px solid currentColor; }
+  a:hover { color: var(--brand-primary-hover); }
+
+  header {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: var(--space-11);
+    flex-wrap: wrap;
+    padding: var(--space-7) var(--space-11) var(--space-6);
+    border-bottom: 2px solid var(--neutral-900);
+  }
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--text-secondary-dark);
+    margin: 0 0 var(--space-3);
+  }
+  h1 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 26px;
+    line-height: 1.15;
+    letter-spacing: -.01em;
+    margin: 0;
+  }
+  .lede {
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--text-secondary-dark);
+    max-width: 62ch;
+    margin: var(--space-3) 0 0;
+    text-wrap: pretty;
+  }
+
+  button {
+    font-family: var(--font-display);
+    font-weight: var(--weight-semibold);
+    letter-spacing: 0.01em;
+    font-size: 13.5px;
+    padding: 12px;
+    border-radius: var(--radius-base);
+    border: 1px solid var(--border-hairline-light);
+    background: transparent;
+    color: var(--text-secondary-light);
+    cursor: pointer;
+    transition: background var(--duration-fast) var(--ease-standard), border-color var(--duration-fast) var(--ease-standard), color var(--duration-fast) var(--ease-standard);
+  }
+  button:hover { border-color: var(--text-primary-light); color: var(--text-primary-light); }
+  button:focus-visible { outline: 2px solid var(--brand-primary); outline-offset: 2px; }
+  button[aria-pressed="true"] {
+    background: var(--brand-primary);
+    border-color: var(--brand-primary);
+    color: var(--brand-primary-ink);
+  }
+  button[aria-pressed="true"]:hover { background: var(--brand-primary-hover); border-color: var(--brand-primary-hover); color: var(--brand-primary-ink); }
+  .row { display: flex; gap: var(--space-4); }
+  .row.wrap { flex-wrap: wrap; }
+  .row.compact button { font-size: 12px; padding: 9px 11px; }
+
+  body.conduciendo header,
+  body.conduciendo footer { display: none; }
+
+  /* ---------- menú de juego ---------- */
+  #menu {
+    position: absolute;
+    top: var(--space-6);
+    left: var(--space-6);
+    z-index: 3;
+    width: 262px;
+    max-height: calc(100% - var(--space-6) * 2);
+    overflow: auto;
+    background: var(--surface-paper);
+    border: 1px solid var(--border-hairline-light);
+    border-radius: var(--radius-base);
+    padding: var(--space-6);
+    display: none;
+    flex-direction: column;
+    gap: var(--space-7);
+  }
+  body.menu-abierto:not(.conduciendo) #menu { display: flex; }
+  #menu .titulo {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 15px;
+    letter-spacing: -.01em;
+    margin: 0;
+    padding-bottom: var(--space-4);
+    border-bottom: 2px solid var(--neutral-900);
+  }
+  .msec { display: flex; flex-direction: column; gap: var(--space-3); }
+  .msec > span {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--text-secondary-dark);
+  }
+  #menu .row button { flex: 1 1 auto; }
+
+  .paint { display: grid; grid-template-columns: repeat(7, 1fr); gap: var(--space-3); }
+  .paint button {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1;
+    padding: 0;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border-hairline-light);
+  }
+  .paint button:hover { border-color: var(--text-primary-light); }
+  .paint button[aria-pressed="true"] { border: 2px solid var(--brand-primary); }
+  .pnombre {
+    margin: 0;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--text-secondary-dark);
+  }
+
+  .keys { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 7px 10px; align-items: center; }
+  .keys dt { margin: 0; }
+  .keys dt code {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    border: 1px solid var(--border-hairline-light);
+    background: var(--surface-raised);
+    padding: 2px 7px;
+    border-radius: 3px;
+    white-space: nowrap;
+  }
+  .keys dd { margin: 0; font-size: 12px; color: var(--text-secondary-dark); }
+
+  #salida {
+    position: absolute;
+    top: var(--space-6);
+    right: var(--space-6);
+    z-index: 2;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    padding: 9px 12px;
+    color: var(--text-secondary-light);
+    background: var(--surface-paper);
+    border: 1px solid var(--border-hairline-light);
+  }
+  #salida:hover { border-color: var(--text-primary-light); color: var(--text-primary-light); }
+
+  #tactil {
+    position: absolute;
+    inset: auto var(--space-6) var(--space-6) var(--space-6);
+    z-index: 2;
+    display: none;
+    justify-content: space-between;
+    pointer-events: none;
+  }
+  body.conduciendo.tactil #tactil { display: flex; }
+  #tactil div { display: grid; gap: var(--space-3); pointer-events: auto; }
+  #tactil div:first-child { grid-template-columns: 1fr 1fr; }
+  #tactil button {
+    width: 62px;
+    height: 62px;
+    font-size: 20px;
+    line-height: 1;
+    padding: 0;
+    border-radius: var(--radius-base);
+    background: var(--surface-paper);
+    color: var(--text-secondary-light);
+    touch-action: none;
+  }
+  #tactil button[aria-pressed="true"] { background: var(--brand-primary); color: var(--brand-primary-ink); }
+
+  main { flex: 1 1 auto; min-height: 0; display: flex; position: relative; }
+  three-d-stage { flex: 1 1 auto; min-width: 0; height: 100%; }
+  three-d-stage:not(:defined) { visibility: hidden; }
+
+  footer {
+    flex: 0 0 auto;
+    border-top: 1px solid var(--border-hairline-dark);
+    padding: var(--space-6) var(--space-11);
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-5) var(--space-13);
+  }
+  .spec { display: flex; flex-direction: column; gap: 3px; }
+  .spec dt {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--text-secondary-dark);
+  }
+  .spec dd { font-family: var(--font-mono); font-size: 12px; margin: 0; color: var(--text-primary-dark); }
+  @media (max-width: 860px) {
+    header { flex-direction: column; align-items: flex-start; }
+    h1 { font-size: 21px; }
+    #menu { width: 232px; }
+  }
+</style>
+</head>
+<body>
+  <header>
+    <button id="menu-btn" type="button" aria-pressed="true">Menú</button>
+  </header>
+
+  <main>
+    <aside id="menu" aria-label="Menú del visor">
+      <p class="titulo">Menú del visor</p>
+      <section class="msec">
+        <span>Modo</span>
+        <div class="row wrap">
+          <button id="drive" type="button" aria-pressed="false">Conducir</button>
+          <button id="anim" type="button" aria-pressed="false">Movimiento</button>
+        </div>
+      </section>
+      <section class="msec">
+        <span>Vehículo</span>
+        <div class="row compact wrap" id="vehiculo">
+          <button type="button" data-coche="default" aria-pressed="true">De serie</button>
+          <button type="button" data-coche="oldschool" aria-pressed="false">Old school</button>
+        </div>
+      </section>
+      <section class="msec">
+        <span>Pintura · 14 acabados</span>
+        <div class="paint" id="pintura">
+          <button type="button" data-pintura="rojo" style="background:linear-gradient(#d3361b,#7c1a13)" aria-pressed="true" title="Rojo (original del GLB)"></button>
+          <button type="button" data-pintura="naranja" style="background:linear-gradient(#ff940d,#af0071)" aria-pressed="false" title="Naranja"></button>
+          <button type="button" data-pintura="amarillo" style="background:linear-gradient(#ffd23d,#e0700e)" aria-pressed="false" title="Amarillo"></button>
+          <button type="button" data-pintura="arena" style="background:linear-gradient(#e9c883,#96662a)" aria-pressed="false" title="Arena"></button>
+          <button type="button" data-pintura="verde" style="background:linear-gradient(#8fdd2b,#1f7a35)" aria-pressed="false" title="Verde"></button>
+          <button type="button" data-pintura="esmeralda" style="background:linear-gradient(#2fd6a3,#0c5f57)" aria-pressed="false" title="Esmeralda"></button>
+          <button type="button" data-pintura="cian" style="background:linear-gradient(#3fd4ff,#0c62c9)" aria-pressed="false" title="Cian"></button>
+          <button type="button" data-pintura="azul" style="background:linear-gradient(#4f8bff,#24297d)" aria-pressed="false" title="Azul"></button>
+          <button type="button" data-pintura="indigo" style="background:linear-gradient(#6d5cff,#391e8f)" aria-pressed="false" title="Índigo"></button>
+          <button type="button" data-pintura="violeta" style="background:linear-gradient(#b06bff,#5c1e90)" aria-pressed="false" title="Violeta"></button>
+          <button type="button" data-pintura="magenta" style="background:linear-gradient(#ff4fd8,#8f1268)" aria-pressed="false" title="Magenta"></button>
+          <button type="button" data-pintura="rosa" style="background:linear-gradient(#ff7aa8,#c22550)" aria-pressed="false" title="Rosa"></button>
+          <button type="button" data-pintura="blanco" style="background:linear-gradient(#ffffff,#b5b5b5)" aria-pressed="false" title="Blanco"></button>
+          <button type="button" data-pintura="negro" style="background:linear-gradient(#626262,#262526)" aria-pressed="false" title="Negro"></button>
+        </div>
+        <p class="pnombre" id="pintura-nombre">Rojo (original del GLB)</p>
+      </section>
+      <section class="msec">
+        <span>Encuadre</span>
+        <div class="row compact wrap" id="vistas">
+          <button type="button" data-vista="iso">Iso</button>
+          <button type="button" data-vista="frontal">Frontal</button>
+          <button type="button" data-vista="trasera">Trasera</button>
+          <button type="button" data-vista="cenital">Cenital</button>
+        </div>
+      </section>
+      <section class="msec">
+        <span>Revisión</span>
+        <div class="row compact wrap">
+          <button id="wire" type="button" aria-pressed="false">Malla</button>
+          <button id="fondo" type="button" aria-pressed="false">Fondo oscuro</button>
+          <button id="sonido" type="button" aria-pressed="false">Sonido</button>
+        </div>
+      </section>
+      <section class="msec">
+        <span>Controles</span>
+        <dl class="keys">
+          <dt><code>↑ ↓ ← →</code></dt><dd>conducir</dd>
+          <dt><code>Espacio</code></dt><dd>salto y enderezar</dd>
+          <dt><code>Shift</code></dt><dd>boost</dd>
+          <dt><code>X</code></dt><dd>freno de mano · derrape</dd>
+          <dt><code>H</code></dt><dd>bocina</dd>
+          <dt><code>Esc</code></dt><dd>salir de conducción</dd>
+        </dl>
+      </section>
+    </aside>
+    <three-d-stage name="coche-portafolio" background="#EFF1F6" autorotate></three-d-stage>
+    <button id="salida" type="button" hidden>Esc para salir</button>
+    <div id="tactil" aria-label="Controles táctiles">
+      <div>
+        <button type="button" data-tecla="arrowleft" aria-pressed="false" aria-label="Izquierda">←</button>
+        <button type="button" data-tecla="arrowright" aria-pressed="false" aria-label="Derecha">→</button>
+      </div>
+      <div>
+        <button type="button" data-tecla="arrowup" aria-pressed="false" aria-label="Acelerar">↑</button>
+        <button type="button" data-tecla="arrowdown" aria-pressed="false" aria-label="Frenar">↓</button>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <dl class="spec"><dt>Piezas nombradas</dt><dd id="s-parts">—</dd></dl>
+    <dl class="spec"><dt>Materiales</dt><dd id="s-mats">—</dd></dl>
+    <dl class="spec"><dt>Triángulos</dt><dd id="s-tris">—</dd></dl>
+    <dl class="spec"><dt>Medidas (L × An × Al)</dt><dd id="s-size">—</dd></dl>
+    <dl class="spec"><dt>Exporta</dt><dd>GLB · OBJ + MTL</dd></dl>
+  </footer>
+
+  <script src="three-d-stage.js"></script>
+  <script type="module" src="coche-toy-model.js"></script>
+</body>
+</html>

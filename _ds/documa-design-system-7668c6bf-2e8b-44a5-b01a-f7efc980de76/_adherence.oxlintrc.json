@@ -1,0 +1,352 @@
+{
+  "plugins": [
+    "react",
+    "import"
+  ],
+  "rules": {
+    "react/forbid-elements": [
+      "warn",
+      {
+        "forbid": []
+      }
+    ],
+    "no-restricted-imports": [
+      "warn",
+      {
+        "patterns": [
+          {
+            "group": [
+              "components/core/**",
+              "components/document/**",
+              "components/feedback/**",
+              "components/forms/**",
+              "exploration/landing/**",
+              "ui_kits/documa-web/**"
+            ],
+            "message": "Import design-system components from 'index.js', not component internals."
+          }
+        ]
+      }
+    ],
+    "no-restricted-syntax": [
+      "warn",
+      {
+        "selector": "Literal[value=/#[0-9a-fA-F]{3,8}\\b/]",
+        "message": "Raw hex color — use a design-system color token via var()."
+      },
+      {
+        "selector": "Literal[value=/\\b\\d+px\\b/]",
+        "message": "Raw px value — use a design-system spacing token via var()."
+      },
+      {
+        "selector": "Literal[value=/font-family\\s*:\\s*(?!['\\\"]?(?:Space Grotesk|Inter|JetBrains Mono))/i]",
+        "message": "Font not provided by the design system. Available: Space Grotesk, Inter, JetBrains Mono."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Button'] > JSXAttribute > JSXIdentifier[name!=/^(?:variant|size|disabled|fullWidth|children|onClick|type|key|ref|className|style|children)$/]",
+        "message": "<Button> doesn't accept that prop. Declared props: variant, size, disabled, fullWidth, children, onClick, type."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Button'] > JSXAttribute[name.name='variant'] > Literal[value!=/^(?:primary|dark|ghost)$/]",
+        "message": "<Button> variant must be one of 'primary' | 'dark' | 'ghost'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Button'] > JSXAttribute[name.name='size'] > Literal[value!=/^(?:base|compact)$/]",
+        "message": "<Button> size must be one of 'base' | 'compact'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Button'] > JSXAttribute[name.name='type'] > Literal[value!=/^(?:button|submit)$/]",
+        "message": "<Button> type must be one of 'button' | 'submit'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='DocSlot'] > JSXAttribute > JSXIdentifier[name!=/^(?:label|token|state|children|key|ref|className|style|children)$/]",
+        "message": "<DocSlot> doesn't accept that prop. Declared props: label, token, state, children."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='DocSlot'] > JSXAttribute[name.name='state'] > Literal[value!=/^(?:empty|filling|pending|filled)$/]",
+        "message": "<DocSlot> state must be one of 'empty' | 'filling' | 'pending' | 'filled'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='DropzoneFile'] > JSXAttribute > JSXIdentifier[name!=/^(?:name|size|key|ref|className|style|children)$/]",
+        "message": "<DropzoneFile> doesn't accept that prop. Declared props: name, size."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='ImagePoint'] > JSXAttribute > JSXIdentifier[name!=/^(?:token|label|thumbSrc|onPick|key|ref|className|style|children)$/]",
+        "message": "<ImagePoint> doesn't accept that prop. Declared props: token, label, thumbSrc, onPick."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='ImageSlot'] > JSXAttribute > JSXIdentifier[name!=/^(?:label|token|src|caption|key|ref|className|style|children)$/]",
+        "message": "<ImageSlot> doesn't accept that prop. Declared props: label, token, src, caption."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='LimitNotice'] > JSXAttribute > JSXIdentifier[name!=/^(?:title|description|resetLabel|onReset|visible|key|ref|className|style|children)$/]",
+        "message": "<LimitNotice> doesn't accept that prop. Declared props: title, description, resetLabel, onReset, visible."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='MicButton'] > JSXAttribute > JSXIdentifier[name!=/^(?:recording|supported|onClick|key|ref|className|style|children)$/]",
+        "message": "<MicButton> doesn't accept that prop. Declared props: recording, supported, onClick."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='StampCounter'] > JSXAttribute > JSXIdentifier[name!=/^(?:total|remaining|key|ref|className|style|children)$/]",
+        "message": "<StampCounter> doesn't accept that prop. Declared props: total, remaining."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='TemplateCard'] > JSXAttribute > JSXIdentifier[name!=/^(?:name|textSlots|imageSlots|active|onClick|key|ref|className|style|children)$/]",
+        "message": "<TemplateCard> doesn't accept that prop. Declared props: name, textSlots, imageSlots, active, onClick."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='TextArea'] > JSXAttribute > JSXIdentifier[name!=/^(?:value|onChange|placeholder|listening|minHeight|key|ref|className|style|children)$/]",
+        "message": "<TextArea> doesn't accept that prop. Declared props: value, onChange, placeholder, listening, minHeight."
+      }
+    ]
+  },
+  "overrides": [
+    {
+      "files": [
+        "**/index.js"
+      ],
+      "rules": {
+        "no-restricted-imports": "off"
+      }
+    }
+  ],
+  "x-omelette": {
+    "components": {
+      "Button": {
+        "replaces": []
+      },
+      "DocSlot": {
+        "replaces": []
+      },
+      "DropzoneFile": {
+        "replaces": []
+      },
+      "ImagePoint": {
+        "replaces": []
+      },
+      "ImageSlot": {
+        "replaces": []
+      },
+      "LimitNotice": {
+        "replaces": []
+      },
+      "MicButton": {
+        "replaces": []
+      },
+      "StampCounter": {
+        "replaces": []
+      },
+      "TemplateCard": {
+        "replaces": []
+      },
+      "TextArea": {
+        "replaces": []
+      }
+    },
+    "tokens": [
+      "--accent-warm",
+      "--border-hairline-dark",
+      "--border-hairline-light",
+      "--border-width-emphasis",
+      "--border-width-hairline",
+      "--border-width-strong",
+      "--brand-primary",
+      "--brand-primary-hover",
+      "--brand-primary-ink",
+      "--brand-primary-wash",
+      "--caret-blink-duration",
+      "--content-max-width",
+      "--duration-base",
+      "--duration-fast",
+      "--duration-image-fade",
+      "--duration-slow",
+      "--ease-bounce",
+      "--ease-standard",
+      "--font-body",
+      "--font-display",
+      "--font-mono",
+      "--indigo-500",
+      "--indigo-600",
+      "--leading-relaxed",
+      "--leading-snug",
+      "--leading-tight",
+      "--neutral-0",
+      "--neutral-100",
+      "--neutral-200",
+      "--neutral-25",
+      "--neutral-400",
+      "--neutral-600",
+      "--neutral-800",
+      "--neutral-900",
+      "--orange-100",
+      "--orange-300",
+      "--orange-600",
+      "--orange-700",
+      "--pulse-duration",
+      "--radius-base",
+      "--radius-circle",
+      "--radius-pill",
+      "--radius-sm",
+      "--red-600",
+      "--red-700",
+      "--space-1",
+      "--space-10",
+      "--space-11",
+      "--space-12",
+      "--space-13",
+      "--space-14",
+      "--space-15",
+      "--space-2",
+      "--space-3",
+      "--space-4",
+      "--space-5",
+      "--space-6",
+      "--space-7",
+      "--space-8",
+      "--space-9",
+      "--state-danger",
+      "--state-danger-text",
+      "--state-pending-bg",
+      "--state-pending-border",
+      "--state-pending-text",
+      "--surface-app",
+      "--surface-inverse",
+      "--surface-inverse-hover",
+      "--surface-paper",
+      "--surface-paper-raised",
+      "--surface-raised",
+      "--text-2xl",
+      "--text-2xs",
+      "--text-base",
+      "--text-disabled-dark",
+      "--text-lg",
+      "--text-md",
+      "--text-mono-label",
+      "--text-mono-meta",
+      "--text-muted-light",
+      "--text-primary-dark",
+      "--text-primary-light",
+      "--text-secondary-dark",
+      "--text-secondary-light",
+      "--text-sm",
+      "--text-xl",
+      "--text-xs",
+      "--tracking-eyebrow",
+      "--tracking-loose",
+      "--tracking-normal",
+      "--tracking-tight",
+      "--tracking-wide",
+      "--tracking-widest",
+      "--weight-bold",
+      "--weight-medium",
+      "--weight-regular",
+      "--weight-semibold",
+      "--workbench-gap"
+    ],
+    "tokenKinds": {
+      "--neutral-0": "color",
+      "--neutral-25": "color",
+      "--neutral-100": "color",
+      "--neutral-200": "color",
+      "--neutral-400": "color",
+      "--neutral-600": "color",
+      "--neutral-800": "color",
+      "--neutral-900": "color",
+      "--indigo-600": "color",
+      "--indigo-500": "color",
+      "--orange-600": "color",
+      "--orange-700": "color",
+      "--orange-100": "color",
+      "--orange-300": "color",
+      "--red-600": "color",
+      "--red-700": "color",
+      "--surface-app": "color",
+      "--surface-raised": "color",
+      "--surface-paper": "color",
+      "--surface-paper-raised": "color",
+      "--surface-inverse": "color",
+      "--surface-inverse-hover": "color",
+      "--border-hairline-dark": "color",
+      "--border-hairline-light": "color",
+      "--text-primary-dark": "font",
+      "--text-secondary-dark": "font",
+      "--text-disabled-dark": "font",
+      "--text-primary-light": "font",
+      "--text-secondary-light": "font",
+      "--text-muted-light": "font",
+      "--brand-primary": "color",
+      "--brand-primary-hover": "color",
+      "--brand-primary-ink": "color",
+      "--brand-primary-wash": "color",
+      "--accent-warm": "color",
+      "--state-danger": "color",
+      "--state-danger-text": "font",
+      "--state-pending-bg": "color",
+      "--state-pending-text": "font",
+      "--state-pending-border": "color",
+      "--font-display": "font",
+      "--font-body": "font",
+      "--font-mono": "font",
+      "--text-2xl": "font",
+      "--text-xl": "font",
+      "--text-lg": "font",
+      "--text-md": "font",
+      "--text-base": "font",
+      "--text-sm": "font",
+      "--text-xs": "font",
+      "--text-2xs": "font",
+      "--text-mono-label": "font",
+      "--text-mono-meta": "font",
+      "--weight-regular": "font",
+      "--weight-medium": "font",
+      "--weight-semibold": "font",
+      "--weight-bold": "font",
+      "--leading-tight": "font",
+      "--leading-snug": "font",
+      "--leading-relaxed": "font",
+      "--tracking-tight": "font",
+      "--tracking-normal": "font",
+      "--tracking-wide": "font",
+      "--tracking-widest": "font",
+      "--tracking-eyebrow": "font",
+      "--tracking-loose": "font",
+      "--space-1": "spacing",
+      "--space-2": "spacing",
+      "--space-3": "spacing",
+      "--space-4": "spacing",
+      "--space-5": "spacing",
+      "--space-6": "spacing",
+      "--space-7": "spacing",
+      "--space-8": "spacing",
+      "--space-9": "spacing",
+      "--space-10": "spacing",
+      "--space-11": "spacing",
+      "--space-12": "spacing",
+      "--space-13": "spacing",
+      "--space-14": "spacing",
+      "--space-15": "spacing",
+      "--radius-sm": "radius",
+      "--radius-base": "radius",
+      "--radius-pill": "radius",
+      "--radius-circle": "radius",
+      "--content-max-width": "spacing",
+      "--workbench-gap": "spacing",
+      "--ease-standard": "other",
+      "--ease-bounce": "other",
+      "--duration-fast": "other",
+      "--duration-base": "other",
+      "--duration-slow": "other",
+      "--duration-image-fade": "other",
+      "--border-width-hairline": "spacing",
+      "--border-width-emphasis": "spacing",
+      "--border-width-strong": "spacing",
+      "--caret-blink-duration": "other",
+      "--pulse-duration": "other"
+    },
+    "fontFamilies": [
+      "Inter",
+      "JetBrains Mono",
+      "Space Grotesk"
+    ]
+  }
+}
